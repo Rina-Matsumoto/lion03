@@ -9,6 +9,11 @@ class Post extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+    'title',
+    'body',
+    ];
+    
     public function index(Post $post)
     {
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);
