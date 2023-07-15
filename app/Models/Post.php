@@ -12,8 +12,9 @@ class Post extends Model
     use HasFactory;
     
     protected $fillable = [
-    'title',
-    'body',
+        'title',
+        'body',
+        'category_id'
     ];
     
     public function index(Post $post)
@@ -23,7 +24,12 @@ class Post extends Model
 
     public function getPaginateByLimit(int $limit_count = 3)
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+       return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 }
