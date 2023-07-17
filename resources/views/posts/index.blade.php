@@ -40,6 +40,15 @@
                 }
             }
         </script>
+        <div>
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </body>
     </x-app-layout>
 </html>
